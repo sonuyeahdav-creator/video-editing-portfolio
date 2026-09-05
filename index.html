@@ -376,6 +376,22 @@
     }
     .frame-reel iframe { width: 100%; height: 660px; border: 0; display: block; }
 
+    /* Studio */
+    #studio { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .studio-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 36px; align-items: center; }
+    .studio-photo {
+      position: relative; border-radius: var(--radius); overflow: hidden;
+      border: 1px solid var(--border); box-shadow: var(--shadow);
+      max-width: 420px;
+    }
+    .studio-photo img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .studio-copy h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
+    .studio-copy p { color: var(--muted); margin-bottom: 14px; max-width: 520px; }
+    .studio-copy .tools { margin-bottom: 22px; }
+    .studio-actions { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; }
+    .comming-soon { font-size: 13px; color: var(--muted); display: inline-flex; align-items: center; gap: 8px; }
+    .comming-soon .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent2); }
+
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.in { opacity: 1; transform: none; }
@@ -385,6 +401,7 @@
       .about-grid { grid-template-columns: 1fr; }
       .design-grid { grid-template-columns: 1fr; }
       .contact-card { grid-template-columns: 1fr; }
+      .studio-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 860px) {
       .nav-links { display: none; }
@@ -410,6 +427,7 @@
       <a href="#work">Work</a>
       <a href="#reels">Reels</a>
       <a href="#podcasts">Podcasts</a>
+      <a href="#studio">Studio</a>
       <a href="#design">Design</a>
       <a href="#contact">Contact</a>
       <a href="https://drive.google.com/file/d/1n4fYUJdt1YJ0xlGTN8Ky_6InytmSVLiEv77l76rzUv4/view" target="_blank" class="btn btn-primary" style="padding:9px 18px">Resume</a>
@@ -424,6 +442,7 @@
   <a href="#work">Work</a>
   <a href="#reels">Reels</a>
   <a href="#podcasts">Podcasts</a>
+  <a href="#studio">Studio</a>
   <a href="#design">Design</a>
   <a href="#contact">Contact</a>
   <a href="https://drive.google.com/file/d/1n4fYUJdt1YJ0xlGTN8Ky_6InytmSVLiEv77l76rzUv4/view" target="_blank" class="btn btn-primary">Resume</a>
@@ -539,6 +558,34 @@
   </div>
 </section>
 
+<section id="studio">
+  <div class="container">
+    <div class="section-label">Studio &amp; Client Work</div>
+    <h2>Aaradhya Make Over n Art</h2>
+    <div class="studio-grid">
+      <div>
+        <div class="studio-photo reveal">
+          <img src="aaradhya-studio.jpg" alt="Aaradhya Make Over n Art studio, Indian-style makeover studio in Sangrur" loading="lazy">
+        </div>
+      </div>
+      <div class="studio-copy">
+        <p style="color:var(--text)"><strong>Aaradhya Make Over n Art, Sangrur, Punjab</strong> &middot; Indian-style makeover &amp; bridal styling studio.</p>
+        <p>I partner with the studio on brand visuals, social content and growth strategy, from the Google Business Profile to the reels that bring in bookings.</p>
+        <div class="tools">
+          <span class="tool-chip">Brand rollout</span>
+          <span class="tool-chip">Studio reels</span>
+          <span class="tool-chip">GMB growth</span>
+          <span class="tool-chip">Growth strategy</span>
+        </div>
+        <div class="studio-actions">
+          <a class="btn btn-primary" href="https://www.google.com/maps/place/Aaradhya+Make+over+n+art/@30.2457447,75.835181,17z/data=!3m1!4b1!4m6!3m5!1s0x3910519dfb1c8c05:0x18bcea5ec0fbb6d0!8m2!3d30.2457401!4d75.8377613!16s%2Fg%2F11ysn6c9st" target="_blank">View on Google Maps</a>
+          <span class="comming-soon"><span class="dot"></span>Studio video coming soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="clients">
   <div class="container">
     <div class="section-label">Where my work lives</div>
@@ -562,6 +609,12 @@
         <h3>My resume</h3>
         <p>Experience across production, marketing and AI product work.</p>
         <span class="plat-link">Download resume &rarr;</span>
+      </a>
+      <a class="plat-card" href="medbrand-proposal.pdf" target="_blank">
+        <div class="icon">&#128203;</div>
+        <h3>Medbrand proposal (PDF)</h3>
+        <p>Brand &amp; digital consulting proposal, working draft shared with client.</p>
+        <span class="plat-link">Open proposal &rarr;</span>
       </a>
     </div>
   </div>
