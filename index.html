@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -179,12 +179,9 @@
     /* About */
     #about { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
     .about-grid { display: grid; grid-template-columns: 320px 1fr; gap: 48px; align-items: start; }
-    .monogram {
-      width: 200px; height: 200px; border-radius: 34px;
-      background: var(--grad);
-      display: grid; place-items: center;
-      font-family: 'Sora', sans-serif; font-weight: 800; font-size: 72px; color: #fff;
-      box-shadow: var(--shadow);
+    .about-photo {
+      width: 240px; height: 240px; border-radius: 40px; object-fit: cover;
+      background: var(--card); border: 1px solid var(--border); box-shadow: var(--shadow);
       transform: rotate(-3deg);
     }
     .about-copy h3 { font-size: 24px; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.5px; }
@@ -349,6 +346,7 @@
       transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
     }
     .reel-art { position: absolute; inset: 0; }
+    .reel-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
     .reel-blob { position: absolute; border-radius: 50%; filter: blur(26px); opacity: 0.55; }
     .reel-card::after {
       content: ''; position: absolute; inset: 0;
@@ -382,9 +380,10 @@
     .studio-photo {
       position: relative; border-radius: var(--radius); overflow: hidden;
       border: 1px solid var(--border); box-shadow: var(--shadow);
-      max-width: 420px;
+      max-width: 420px; background: var(--card); display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 1/1;
     }
-    .studio-photo img { width: 100%; height: auto; display: block; object-fit: cover; }
+    .studio-photo img { width: 100%; height: 100%; display: block; object-fit: contain; padding: 26px; }
     .studio-copy h3 { font-size: 24px; font-weight: 700; margin-bottom: 12px; letter-spacing: -0.5px; }
     .studio-copy p { color: var(--muted); margin-bottom: 14px; max-width: 520px; }
     .studio-copy .tools { margin-bottom: 22px; }
@@ -410,7 +409,7 @@
       .platform-grid { grid-template-columns: 1fr; }
       .pod-card { grid-template-columns: 1fr; }
       .stats { grid-template-columns: repeat(2, 1fr); }
-      .monogram { width: 140px; height: 140px; font-size: 52px; border-radius: 26px; }
+      .about-photo { width: 190px; height: 190px; border-radius: 32px; }
     }
   </style>
 </head>
@@ -453,7 +452,7 @@
   <div class="container">
     <span class="badge"><span class="dot"></span> Open to freelance edits &amp; full-time roles</span>
     <h1>I turn raw footage into<br><span class="grad-text">stories people remember.</span></h1>
-    <p class="sub">Hi, I'm Sonu â€” video editor, illustrator &amp; content producer from Delhi. I cut brand films, podcasts, reels and graphics that feel human, sound great and actually connect.</p>
+    <p class="sub">Hi, I'm Sonu - video editor, illustrator &amp; content producer from Delhi. I cut brand films, podcasts, reels and graphics that feel human, sound great and actually connect.</p>
     <div class="hero-cta">
       <a href="#work" class="btn btn-primary">Watch my work</a>
       <a href="#contact" class="btn btn-ghost">Say hello</a>
@@ -481,11 +480,11 @@
     <div class="section-label">Nice to meet you</div>
     <h2>A little about me</h2>
     <div class="about-grid">
-      <div style="display:flex; justify-content:center"><div class="monogram">SY</div></div>
+      <div style="display:flex; justify-content:center"><img class="about-photo" src="sonu-photo.jpg" alt="Sonu Yadav" loading="lazy"></div>
       <div class="about-copy">
         <h3>Editor by craft. Storyteller by habit.</h3>
-        <p>I started in <strong>journalism and marketing</strong> â€” and somewhere between covering stories and running campaigns, I fell hard for the edit. Since then I've cut corporate films, property showcases, podcast episodes and social reels for teams like <strong>RivaKenko Pharma</strong> and community work with <strong>Pehchaan The Street School</strong>.</p>
-        <p>I don't just splice clips together. I care about <strong>pacing, sound, color and the little emotional moments</strong> that make a video feel alive â€” and I finish every piece looking like it belongs to the brand, not the timeline.</p>
+        <p>I started in <strong>journalism and marketing</strong> - and somewhere between covering stories and running campaigns, I fell hard for the edit. Since then I've cut corporate films, property showcases, podcast episodes and social reels for teams like <strong>RivaKenko Pharma</strong> and community work with <strong>Pehchaan The Street School</strong>.</p>
+        <p>I don't just splice clips together. I care about <strong>pacing, sound, color and the little emotional moments</strong> that make a video feel alive - and I finish every piece looking like it belongs to the brand, not the timeline.</p>
         <div class="stats">
           <div class="stat"><div class="num">6+</div><div class="lbl">featured edits &amp; episodes</div></div>
           <div class="stat"><div class="num">3</div><div class="lbl">clients &amp; cause channels</div></div>
@@ -509,7 +508,7 @@
   <div class="container">
     <div class="section-label">Latest Work</div>
     <h2>Recent edits</h2>
-    <p class="section-desc">Brand films and property showcases I cut end-to-end â€” including pacing, motion titles, color and sound. Click any one to watch.</p>
+    <p class="section-desc">Brand films and property showcases I cut end-to-end - including pacing, motion titles, color and sound. Click any one to watch.</p>
     <div class="work-grid" id="workGrid"></div>
   </div>
 </section>
@@ -518,7 +517,7 @@
   <div class="container">
     <div class="section-label">Reels &amp; Shorts</div>
     <h2>Quick cuts, big impact</h2>
-    <p class="section-desc">Short-form edits made for feed, reach and attention. Tap any reel to watch â€” they open right here, straight from Instagram.</p>
+    <p class="section-desc">Short-form edits made for feed, reach and attention. Tap any reel to watch - they open right here, straight from Instagram.</p>
     <div class="reel-grid" id="reelGrid"></div>
   </div>
 </section>
@@ -527,7 +526,7 @@
   <div class="container">
     <div class="section-label">Podcasts</div>
     <h2>Conversations I've edited</h2>
-    <p class="section-desc">Multi-camera podcast episodes edited for the Echoles channel â€” clean cuts, synced audio and motion titles.</p>
+    <p class="section-desc">Multi-camera podcast episodes edited for the Echoles channel - clean cuts, synced audio and motion titles.</p>
     <div class="pod-row" id="podGrid"></div>
   </div>
 </section>
@@ -552,7 +551,7 @@
           <p>All my graphics, vector art and cover designs in one Drive folder.</p>
           <a class="btn btn-ghost" href="https://drive.google.com/drive/folders/1Bq9gh2MWUECQYvG0O6trKVP9eubK1rms" target="_blank">Open Drive folder</a>
         </div>
-        <p class="ig-note">If the preview below looks empty, just open the Drive folder â€” new art is added all the time.</p>
+        <p class="ig-note">If the preview below looks empty, just open the Drive folder - new art is added all the time.</p>
       </div>
     </div>
   </div>
@@ -565,7 +564,7 @@
     <div class="studio-grid">
       <div>
         <div class="studio-photo reveal">
-          <img src="aaradhya-studio.jpg" alt="Aaradhya Make Over n Art studio, Indian-style makeover studio in Sangrur" loading="lazy">
+          <img src="aaradhya-logo.png" alt="Aaradhya Make Over n Art logo" loading="lazy">
         </div>
       </div>
       <div class="studio-copy">
@@ -579,7 +578,8 @@
         </div>
         <div class="studio-actions">
           <a class="btn btn-primary" href="https://www.google.com/maps/place/Aaradhya+Make+over+n+art/@30.2457447,75.835181,17z/data=!3m1!4b1!4m6!3m5!1s0x3910519dfb1c8c05:0x18bcea5ec0fbb6d0!8m2!3d30.2457401!4d75.8377613!16s%2Fg%2F11ysn6c9st" target="_blank">View on Google Maps</a>
-          <span class="comming-soon"><span class="dot"></span>Studio video coming soon</span>
+          <button type="button" class="btn btn-ghost" onclick="openFBReel()">Watch studio reel</button>
+          <a class="comming-soon" href="https://www.facebook.com/share/r/18kfFNVq4G/" target="_blank"><span class="dot"></span>open in Facebook</a>
         </div>
       </div>
     </div>
@@ -594,13 +594,13 @@
     <div class="platform-grid">
       <a class="plat-card" href="https://www.youtube.com/@RivaKenkoPHARMA/videos" target="_blank">
         <div class="icon">&#9654;</div>
-        <h3>RivaKenko Pharma â€” YouTube</h3>
+        <h3>RivaKenko Pharma - YouTube</h3>
         <p>Brand &amp; corporate video content produced for their channel.</p>
         <span class="plat-link">Visit channel &rarr;</span>
       </a>
       <a class="plat-card" href="https://www.instagram.com/pehchaanstreetschool" target="_blank">
         <div class="icon">&#9679;</div>
-        <h3>Pehchaan â€” NGO storytelling</h3>
+        <h3>Pehchaan - NGO storytelling</h3>
         <p>Reels, social edits &amp; illustration work for community impact.</p>
         <span class="plat-link">View Instagram &rarr;</span>
       </a>
@@ -622,19 +622,19 @@
     <div class="platform-grid">
       <a class="plat-card" href="eternal-life-brand-audit.pdf" target="_blank">
         <div class="icon">&#128213;</div>
-        <h3>Eternal Life Ayurveda â€” 360&deg; brand audit</h3>
+        <h3>Eternal Life Ayurveda - 360&deg; brand audit</h3>
         <p>Full strategy &amp; research deck: brand, social, e-com, GMB, SEO, funnel and PR audit with an opportunity map.</p>
         <span class="plat-link">Read the audit &rarr;</span>
       </a>
       <a class="plat-card" href="aaradhya-blueprint.html" target="_blank">
         <div class="icon">&#128202;</div>
-        <h3>Aaradhya Make Over â€” business blueprint</h3>
+        <h3>Aaradhya Make Over - business blueprint</h3>
         <p>PM-side growth blueprint for a makeover studio: funnel, GMB quick win, retention loop and 90-day roadmap.</p>
         <span class="plat-link">View the blueprint &rarr;</span>
       </a>
       <a class="plat-card" href="medbrand-proposal.pdf" target="_blank">
         <div class="icon">&#128203;</div>
-        <h3>Medbrand â€” consulting proposal (draft)</h3>
+        <h3>Medbrand - consulting proposal (draft)</h3>
         <p>Brand &amp; digital consulting proposal prepared as a working proof-of-concept engagement.</p>
         <span class="plat-link">Open proposal &rarr;</span>
       </a>
@@ -650,7 +650,7 @@
     <div class="contact-card">
       <div>
         <h3>Say hello &#128075;</h3>
-        <p>I usually reply within a day. Freelance projects, full-time roles, or just a chat about your idea â€” all welcome.</p>
+        <p>I usually reply within a day. Freelance projects, full-time roles, or just a chat about your idea - all welcome.</p>
         <div class="contact-line">
           <div class="emoji">&#9993;</div>
           <div><div class="lbl">Email</div><a class="val" href="mailto:sonuyeahdav@gmail.com">sonuyeahdav@gmail.com</a></div>
@@ -693,6 +693,11 @@
   <div class="frame-reel" id="reelVideo"></div>
 </div>
 
+<div class="lightbox" id="fbLightbox" role="dialog" aria-modal="true" aria-label="Studio reel player">
+  <button class="lightbox-close" id="fbLightboxClose" aria-label="Close">&times;</button>
+  <div class="frame-reel" id="fbVideo"></div>
+</div>
+
 <script>
 const WORK = [
   { id: "j29gYG6zbC8", title: "OmKiran Commercial Real Estate - An Introduction", tag: "Brand Film", desc: "Hero intro film for a commercial real-estate brand." },
@@ -706,7 +711,7 @@ const PODCASTS = [
 ];
 const REELS = [
   { code: "DDHFqYqywK7", title: "Ye Hai Sapno Ki Pathshala", tag: "Pehchaan NGO", desc: "Story-driven dream-school reel.", grad: "linear-gradient(150deg,#ff4757 0%,#ff6b6b 45%,#ffa502 100%)" },
-  { code: "DJJf-46J9WQ", title: "à¤¸à¥à¤µà¤¾à¤¸à¥à¤¥à¥à¤¯ à¤•à¥€ à¤¨à¤ˆ à¤¶à¥à¤°à¥à¤†à¤¤", tag: "Health", desc: "Wellness campaign launch in Hindi.", grad: "linear-gradient(150deg,#22a6b3 0%,#0be881 100%)" },
+  { code: "DJJf-46J9WQ", title: "स्वास्थ्य की नई शुरुआत", tag: "Health", desc: "Wellness campaign launch in Hindi.", grad: "linear-gradient(150deg,#22a6b3 0%,#0be881 100%)" },
   { code: "DIL8A_AJWnE", title: "Medopols Clinic child care", tag: "Clinic", desc: "Pediatric care campaign reel.", grad: "linear-gradient(150deg,#7d5fff 0%,#a29bfe 100%)" },
   { code: "DPnqzGGgD2x", title: "Rising stronger makes a champion", tag: "Sports", desc: "Motivational cut with a punch.", grad: "linear-gradient(150deg,#e84118 0%,#ffa502 100%)" },
   { code: "DHgtsKesywG", title: "KGMC Pulse Rockstars 2025", tag: "Celebration", desc: "Champions announcement & crowd energy.", grad: "linear-gradient(150deg,#273c75 0%,#0097e6 100%)" }
@@ -747,6 +752,7 @@ reelGrid.innerHTML = REELS.map(r =>
       '<div class="reel-blob" style="width:120px;height:120px;top:8%;left:12%;background:rgba(255,255,255,0.9)"></div>' +
       '<div class="reel-blob" style="width:90px;height:90px;bottom:20%;right:10%;background:rgba(0,0,0,0.9)"></div>' +
     '</div>' +
+    '<img class="reel-cover" src="https://www.instagram.com/p/' + r.code + '/media/?size=m" alt="' + r.title + '" loading="lazy" onerror="this.remove()">' +
     '<span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>' +
     '<div class="reel-info"><span class="vid-chip">' + r.tag + '</span><h3>' + r.title + '</h3></div>' +
   '</div>'
@@ -781,7 +787,23 @@ function closeReel() {
 }
 document.getElementById('reelLightboxClose').addEventListener('click', closeReel);
 reelLightbox.addEventListener('click', e => { if (e.target === reelLightbox) closeReel(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeVideo(); closeReel(); } });
+
+const fbLightbox = document.getElementById('fbLightbox');
+const fbVideo = document.getElementById('fbVideo');
+function openFBReel() {
+  const u = encodeURIComponent('https://www.facebook.com/share/r/18kfFNVq4G/');
+  fbVideo.innerHTML = '<iframe src="https://www.facebook.com/plugins/video.php?href=' + u + '&show_text=false&width=900&height=640" width="420" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" title="Aaradhya studio reel"></iframe>';
+  fbLightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeFBReel() {
+  fbVideo.innerHTML = '';
+  fbLightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('fbLightboxClose').addEventListener('click', closeFBReel);
+fbLightbox.addEventListener('click', e => { if (e.target === fbLightbox) closeFBReel(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeVideo(); closeReel(); closeFBReel(); } });
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
