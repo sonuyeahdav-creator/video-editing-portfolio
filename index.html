@@ -335,6 +335,47 @@
     .frame-16x9 { position: relative; width: 100%; aspect-ratio: 16/9; border-radius: 14px; overflow: hidden; box-shadow: 0 50px 120px -40px rgba(0,0,0,0.95); background: #000; }
     .frame-16x9 iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
+    /* Reels */
+    #reels { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+    .reel-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(185px, 1fr));
+      gap: 20px;
+    }
+    .reel-card {
+      aspect-ratio: 9/16; border-radius: var(--radius);
+      position: relative; cursor: pointer;
+      border: 1px solid var(--border); overflow: hidden;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    .reel-art { position: absolute; inset: 0; }
+    .reel-blob { position: absolute; border-radius: 50%; filter: blur(26px); opacity: 0.55; }
+    .reel-card::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(5,5,10,0.8));
+    }
+    .reel-play {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 54px; height: 54px; border-radius: 50%;
+      background: rgba(255,255,255,0.15); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.4);
+      display: grid; place-items: center; z-index: 2; transition: all 0.25s;
+    }
+    .reel-play svg { width: 20px; height: 20px; fill: #fff; margin-left: 3px; }
+    .reel-card:hover .reel-play { background: var(--grad); border-color: transparent; transform: translate(-50%,-50%) scale(1.12); }
+    .reel-info { position: absolute; left: 0; right: 0; bottom: 0; padding: 16px; z-index: 2; }
+    .reel-info .vid-chip { margin-bottom: 8px; }
+    .reel-info h3 { font-size: 14.5px; font-weight: 600; line-height: 1.4; }
+    .reel-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); border-color: rgba(255,71,87,0.55); }
+
+    .frame-reel {
+      width: min(420px, 100%);
+      border-radius: 14px; overflow: hidden;
+      box-shadow: 0 50px 120px -40px rgba(0,0,0,0.95);
+      background: #000;
+    }
+    .frame-reel iframe { width: 100%; height: 660px; border: 0; display: block; }
+
     /* Reveal */
     .reveal { opacity: 0; transform: translateY(26px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.in { opacity: 1; transform: none; }
@@ -367,6 +408,7 @@
     <div class="nav-links">
       <a href="#about">About</a>
       <a href="#work">Work</a>
+      <a href="#reels">Reels</a>
       <a href="#podcasts">Podcasts</a>
       <a href="#design">Design</a>
       <a href="#contact">Contact</a>
@@ -380,6 +422,7 @@
   <button class="drawer-close" id="drawerClose" aria-label="Close menu">&times;</button>
   <a href="#about">About</a>
   <a href="#work">Work</a>
+  <a href="#reels">Reels</a>
   <a href="#podcasts">Podcasts</a>
   <a href="#design">Design</a>
   <a href="#contact">Contact</a>
@@ -449,6 +492,15 @@
     <h2>Recent edits</h2>
     <p class="section-desc">Brand films and property showcases I cut end-to-end — including pacing, motion titles, color and sound. Click any one to watch.</p>
     <div class="work-grid" id="workGrid"></div>
+  </div>
+</section>
+
+<section id="reels">
+  <div class="container">
+    <div class="section-label">Reels &amp; Shorts</div>
+    <h2>Quick cuts, big impact</h2>
+    <p class="section-desc">Short-form edits made for feed, reach and attention. Tap any reel to watch — they open right here, straight from Instagram.</p>
+    <div class="reel-grid" id="reelGrid"></div>
   </div>
 </section>
 
@@ -561,6 +613,11 @@
   <div class="lightbox-frame"><div class="frame-16x9" id="lightboxVideo"></div></div>
 </div>
 
+<div class="lightbox" id="reelLightbox" role="dialog" aria-modal="true" aria-label="Instagram reel player">
+  <button class="lightbox-close" id="reelLightboxClose" aria-label="Close">&times;</button>
+  <div class="frame-reel" id="reelVideo"></div>
+</div>
+
 <script>
 const WORK = [
   { id: "j29gYG6zbC8", title: "OmKiran Commercial Real Estate - An Introduction", tag: "Brand Film", desc: "Hero intro film for a commercial real-estate brand." },
@@ -571,6 +628,13 @@ const WORK = [
 const PODCASTS = [
   { id: "aI_kONKtnFQ", title: "Flipping burgers to heading enablement at Adobe - Puneet D | EP 14", tag: "Echoles", desc: "Career-story episode, multi-clip edit with mood titles." },
   { id: "ze2LPOcJq64", title: "'Pehchaan The Street' School - Transforming 1000+ kids | EP 13", tag: "Echoles", desc: "NGO impact story, sound-synced multi-cam edit." }
+];
+const REELS = [
+  { code: "DDHFqYqywK7", title: "Ye Hai Sapno Ki Pathshala", tag: "Pehchaan NGO", desc: "Story-driven dream-school reel.", grad: "linear-gradient(150deg,#ff4757 0%,#ff6b6b 45%,#ffa502 100%)" },
+  { code: "DJJf-46J9WQ", title: "स्वास्थ्य की नई शुरुआत", tag: "Health", desc: "Wellness campaign launch in Hindi.", grad: "linear-gradient(150deg,#22a6b3 0%,#0be881 100%)" },
+  { code: "DIL8A_AJWnE", title: "Medopols Clinic child care", tag: "Clinic", desc: "Pediatric care campaign reel.", grad: "linear-gradient(150deg,#7d5fff 0%,#a29bfe 100%)" },
+  { code: "DPnqzGGgD2x", title: "Rising stronger makes a champion", tag: "Sports", desc: "Motivational cut with a punch.", grad: "linear-gradient(150deg,#e84118 0%,#ffa502 100%)" },
+  { code: "DHgtsKesywG", title: "KGMC Pulse Rockstars 2025", tag: "Celebration", desc: "Champions announcement & crowd energy.", grad: "linear-gradient(150deg,#273c75 0%,#0097e6 100%)" }
 ];
 const MARQUEE = ["VIDEO EDITING", "COLOR GRADING", "MOTION TITLES", "BRAND REELS", "PODCAST EDITING", "SHORTS & REELS", "SOUND DESIGN", "ILLUSTRATION", "THUMBNAILS", "CAPTIONS & SUBTITLES"];
 
@@ -601,6 +665,18 @@ const marquee = document.getElementById('marquee');
 const half = MARQUEE.map(t => '<span>' + t + '<i>&#9670;</i></span>').join('');
 marquee.innerHTML = half + half;
 
+const reelGrid = document.getElementById('reelGrid');
+reelGrid.innerHTML = REELS.map(r =>
+  '<div class="reel-card reveal" role="button" tabindex="0" onclick="openReel(\'' + r.code + '\')" onkeydown="if(event.key===\'Enter\')openReel(\'' + r.code + '\')">' +
+    '<div class="reel-art" style="background:' + r.grad + '">' +
+      '<div class="reel-blob" style="width:120px;height:120px;top:8%;left:12%;background:rgba(255,255,255,0.9)"></div>' +
+      '<div class="reel-blob" style="width:90px;height:90px;bottom:20%;right:10%;background:rgba(0,0,0,0.9)"></div>' +
+    '</div>' +
+    '<span class="reel-play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span>' +
+    '<div class="reel-info"><span class="vid-chip">' + r.tag + '</span><h3>' + r.title + '</h3></div>' +
+  '</div>'
+).join('');
+
 const lightbox = document.getElementById('lightbox');
 const lightboxVideo = document.getElementById('lightboxVideo');
 function openVideo(id) {
@@ -615,7 +691,22 @@ function closeVideo() {
 }
 document.getElementById('lightboxClose').addEventListener('click', closeVideo);
 lightbox.addEventListener('click', e => { if (e.target === lightbox) closeVideo(); });
-document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideo(); });
+
+const reelLightbox = document.getElementById('reelLightbox');
+const reelVideo = document.getElementById('reelVideo');
+function openReel(code) {
+  reelVideo.innerHTML = '<iframe src="https://www.instagram.com/reel/' + code + '/embed/" allowfullscreen title="Instagram reel" loading="lazy"></iframe>';
+  reelLightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeReel() {
+  reelVideo.innerHTML = '';
+  reelLightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('reelLightboxClose').addEventListener('click', closeReel);
+reelLightbox.addEventListener('click', e => { if (e.target === reelLightbox) closeReel(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeVideo(); closeReel(); } });
 
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
